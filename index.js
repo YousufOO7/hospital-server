@@ -11,7 +11,12 @@ const openai = new OpenAI({
 });
 
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", 'https://hospital-management-vert-nu.vercel.app'],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 
