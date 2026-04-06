@@ -40,7 +40,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
-    const allDoctorsCollection = client.db("smart_hospital").collection("allDoctors");
+    const allDoctorsCollection = client.db("chatBot").collection("allDoctors");
 
     app.get('/allDoctors', async (req, res) => {
         const result = await allDoctorsCollection.find().toArray();
