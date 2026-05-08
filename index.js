@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require("dotenv").config();
 const OpenAI = require("openai");
 const app = express();
@@ -46,6 +46,13 @@ async function run() {
         const result = await allDoctorsCollection.find().toArray();
         res.send(result); 
     })
+
+    app.get("/single-doctor/:id", async (req, res) => {
+          const id = req.params.id;
+          const query = { _id: new ObjectId(id) };
+          const result = await allDoctorsCollection.findOne(query);
+          res.send(result);
+        });
 
 
      app.post("/chat", async (req, res) => {
